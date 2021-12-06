@@ -1,1 +1,2 @@
+# const.pyにはログイン情報などがあるためignore
 /const.py

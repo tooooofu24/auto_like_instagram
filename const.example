@@ -1,5 +1,13 @@
 URL = "https://www.instagram.com"
-USER_ID = "YOUR_INSTAGRAM_ID"
+USER_ID = 'YOUR_INSTAGRAM_ID'
 PASSWORD = "YOUR_INSTAGRAM_PASSWORD"
 
-INSTAGRAM_API_URL = "https://graph.facebook.com/v12.0/TAG_ID/recent_media?user_id=YOUR_USER_ID&fields=permalink&access_token=YOUR_ACCESS_TOKEN"
+ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN'
+
+TAG_ID_1 = '12345678910123456'
+TAG_ID_2 = '12345678910123456'
+TAG_ID_3 = '12345678910123456'
+
+INSTAGRAM_API_BASE_URL = 'https://graph.facebook.com/v12.0/'
+
+INSTAGRAM_API_URL_PARAMETER = '/recent_media?user_id=YOUR_USER_ID&fields=permalink&access_token=' + ACCESS_TOKEN

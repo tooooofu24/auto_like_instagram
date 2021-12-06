@@ -1,17 +1,11 @@
-import json
-import requests
 import time
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support import expected_conditions as ECpython
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 from const import URL
 from const import PASSWORD
 from const import USER_ID
-from const import INSTAGRAM_API_URL
 
 
 def login(driver):
@@ -31,3 +25,36 @@ def login(driver):
     actions.move_to_element(login_btn)
     actions.click(login_btn)
     actions.perform()
+
+
+def like(driver, url) -> bool:
+    like_button = WebDriverWait(driver, 15).until(
+        EC.visibility_of_element_located(
+            (By.CSS_SELECTOR, '.fr66n button')
+        )
+    )
+    elements = driver.find_elements(By.CSS_SELECTOR, '.fr66n button div')
+    if len(elements) == 2:
+        actions = ActionChains(driver)
+        actions.move_to_element(like_button)
+        actions.click(like_button)
+        actions.perform()
+        return True
+    else:
+        return False
+
+
+def like_urls(driver, urls, count) -> int:
+    for url in urls:
+        if count >= 25:
+            break
+        print(url)
+        driver.get(url)
+        liked = like(driver, url)
+        if liked == True:
+            print('いいね！しました')
+            count += 1
+        else:
+            print('既にいいね！しています')
+        time.sleep(1)
+    return count
