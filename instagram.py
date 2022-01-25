@@ -14,17 +14,14 @@ def login(driver):
     driver.get(URL + '/accounts/login/')
     print(driver.current_url)
 
-    time.sleep(1)
-    check = False
-    while check == False:
-        try:
-            login_btn = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
-                (By.CSS_SELECTOR, "button[type='submit']")))
-            check = True
-        except Exception:
-            print('ログインできません。システム終了します')
-            driver.quit()
-            sys.exit()
+    time.sleep(2)
+    try:
+        login_btn = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
+            (By.CSS_SELECTOR, "button[type='submit']")))
+    except Exception:
+        print('ログインできません。システム終了します')
+        # print(driver.page_source)
+        driver.quit()
     driver.find_element(By.NAME, "username").send_keys(USER_ID)
     driver.find_element(By.NAME, "password").send_keys(PASSWORD)
 
@@ -65,5 +62,5 @@ def like_urls(driver, urls, count) -> int:
             time.sleep(30)
         else:
             print('既にいいね！しています')
-            time.sleep(2)
+            time.sleep(1)
     return count

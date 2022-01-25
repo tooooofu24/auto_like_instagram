@@ -1,5 +1,6 @@
 import time
 import instagram
+import json
 from const import TAG_ID_1
 from const import TAG_ID_2
 from const import TAG_ID_3
@@ -40,6 +41,11 @@ def lambda_handler(event=None, context=None):
 
     # ブラウザを終了する
     driver.quit()
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('正常に終了しました')
+    }
 
 
 if __name__ == '__main__':
